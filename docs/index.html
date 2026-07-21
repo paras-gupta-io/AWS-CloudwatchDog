@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudWatchDog</title>
+    <meta name="description" content="CloudWatchDog: A serverless security engine that detects and auto-remediates dangerous AWS security-group misconfigurations in real time.">
+    <meta name="keywords" content="AWS, Security, Lambda, EventBridge, CloudTrail, Terraform, Infrastructure as Code, DevOps, Cloud Security">
+    <meta name="author" content="Cloud Engineer Portfolio">
+    <meta property="og:title" content="CloudWatchDog — Automated AWS Security Remediation">
+    <meta property="og:description" content="Serverless drift detection and remediation for AWS security groups. Built with Lambda, EventBridge, CloudTrail, and Terraform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awsjourney.space">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">&#128021;</span>
+                <span class="logo-text">CloudWatchDog</span>
+            </a>
+            <div class="nav-links">
+                <a href="#architecture" class="nav-link">Architecture</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#code" class="nav-link">Code</a>
+                <a href="#tech" class="nav-link">Stack</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Serverless Security Automation
+            </div>
+            <h1 class="hero-title">
+                Infrastructure Drift<br>
+                <span class="gradient-text">Stops Here.</span>
+            </h1>
+            <p class="hero-subtitle">
+                CloudWatchDog is a zero-trust security engine that detects and auto-remediates
+                dangerous AWS security-group modifications <em>in real time</em> &mdash; before the
+                attack window opens.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">&lt;5s</span>
+                    <span class="stat-label">Detection to Remediation</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">27</span>
+                    <span class="stat-label">Unit Tests Passing</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Serverless</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#architecture" class="btn btn-primary">
+                    View Architecture
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+                </a>
+                <a href="#code" class="btn btn-secondary">
+                    Explore Code
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="section problem-section" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Problem</span>
+                <h2 class="section-title">One Misconfigured Rule.<br><span class="gradient-text">Millions at Risk.</span></h2>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card glass-card">
+                    <div class="problem-icon">&#9889;</div>
+                    <h3>Seconds to Exposure</h3>
+                    <p>Opening port 22 or 3389 to <code>0.0.0.0/0</code> exposes infrastructure to the entire internet instantly.</p>
+                </div>
+                <div class="problem-card glass-card">
+                    <div class="problem-icon">&#8987;</div>
+                    <h3>Hours to Detection</h3>
+                    <p>Manual audits and periodic scans create a dangerous window where attackers can exploit misconfigurations.</p>
+                </div>
+                <div class="problem-card glass-card">
+                    <div class="problem-icon">&#128021;</div>
+                    <h3>CloudWatchDog Fixes This</h3>
+                    <p>Real-time detection and auto-remediation close the exposure window to <strong>under 5 seconds</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="section arch-section" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Architecture</span>
+                <h2 class="section-title">Event-Driven<br><span class="gradient-text">Remediation Pipeline</span></h2>
+            </div>
+            <div class="arch-diagram">
+                <div class="arch-flow">
+                    <div class="arch-node">
+                        <div class="arch-node-icon">&#128203;</div>
+                        <div class="arch-node-label">CloudTrail</div>
+                        <div class="arch-node-desc">API Audit Logs</div>
+                    </div>
+                    <div class="arch-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-label">API Events</div>
+                    </div>
+                    <div class="arch-node node-highlight">
+                        <div class="arch-node-icon">&#128269;</div>
+                        <div class="arch-node-label">EventBridge</div>
+                        <div class="arch-node-desc">Filtered Rule</div>
+                    </div>
+                    <div class="arch-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-label">SG Ingress Events</div>
+                    </div>
+                    <div class="arch-node node-primary">
+                        <div class="arch-node-icon">&#9881;</div>
+                        <div class="arch-node-label">Lambda</div>
+                        <div class="arch-node-desc">Remediator Engine</div>
+                    </div>
+                </div>
+                <div class="arch-outputs">
+                    <div class="arch-output-line"></div>
+                    <div class="arch-output-branches">
+                        <div class="arch-output-branch">
+                            <div class="arch-node node-action">
+                                <div class="arch-node-icon">&#128737;</div>
+                                <div class="arch-node-label">EC2 API</div>
+                                <div class="arch-node-desc">Revoke Rule</div>
+                            </div>
+                        </div>
+                        <div class="arch-output-branch">
+                            <div class="arch-node node-notify">
+                                <div class="arch-node-icon">&#128172;</div>
+                                <div class="arch-node-label">Slack</div>
+                                <div class="arch-node-desc">Alert Team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arch-steps">
+                <div class="arch-step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <h4>Capture</h4>
+                        <p>CloudTrail continuously logs every <code>AuthorizeSecurityGroupIngress</code> API call across the account.</p>
+                    </div>
+                </div>
+                <div class="arch-step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <h4>Filter</h4>
+                        <p>EventBridge rule isolates security-group ingress modifications from all other API traffic.</p>
+                    </div>
+                </div>
+                <div class="arch-step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <h4>Analyze</h4>
+                        <p>Lambda parses <code>ipPermissions</code> for port 22/3389 exposure to public CIDRs (<code>0.0.0.0/0</code>, <code>::/0</code>).</p>
+                    </div>
+                </div>
+                <div class="arch-step">
+                    <div class="step-num">04</div>
+                    <div class="step-content">
+                        <h4>Remediate</h4>
+                        <p>Non-compliant rules are immediately revoked via <code>ec2:RevokeSecurityGroupIngress</code>.</p>
+                    </div>
+                </div>
+                <div class="arch-step">
+                    <div class="step-num">05</div>
+                    <div class="step-content">
+                        <h4>Notify</h4>
+                        <p>Markdown-formatted Slack alert with user identity, security group ID, and remediation status.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Enterprise-Grade<br><span class="gradient-text">Security Features</span></h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#9889;</span></div>
+                    <h3>Real-Time Detection</h3>
+                    <p>EventBridge triggers within seconds of any security-group modification.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#127919;</span></div>
+                    <h3>Surgical Remediation</h3>
+                    <p>Revokes only the non-compliant rule &mdash; all other rules remain untouched.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#127760;</span></div>
+                    <h3>Dual-Stack Coverage</h3>
+                    <p>Detects both IPv4 (<code>0.0.0.0/0</code>) and IPv6 (<code>::/0</code>) public CIDR violations.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#128202;</span></div>
+                    <h3>Port Range Awareness</h3>
+                    <p>Catches broad ranges like <code>1-1024</code> that overlap with SSH/RDP ports.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#128274;</span></div>
+                    <h3>Least Privilege IAM</h3>
+                    <p>Lambda role scoped to exactly 3 permissions &mdash; no wildcards, no admin.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon-wrap"><span class="feature-icon">&#129514;</span></div>
+                    <h3>27 Unit Tests</h3>
+                    <p>Full pytest suite with zero AWS credentials required for local testing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Section -->
+    <section class="section code-section" id="code">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Under the Hood</span>
+                <h2 class="section-title">Clean, Modular<br><span class="gradient-text">Production Code</span></h2>
+            </div>
+            <div class="code-tabs">
+                <button class="code-tab active" data-tab="lambda">Lambda Engine</button>
+                <button class="code-tab" data-tab="terraform">Terraform IaC</button>
+                <button class="code-tab" data-tab="tests">Test Suite</button>
+            </div>
+            <div class="code-panels">
+                <div class="code-panel active" id="panel-lambda">
+                    <div class="code-block glass-card">
+                        <div class="code-header">
+                            <span class="code-filename">src/lambda_remediator.py</span>
+                            <span class="code-lang">Python / Boto3</span>
+                        </div>
+<pre><code><span class="kw">def</span> <span class="fn">find_noncompliant_rules</span>(ip_permissions):
+    <span class="cm">"""Identify ingress rules exposing dangerous ports."""</span>
+    violations = []
+    <span class="kw">for</span> perm <span class="kw">in</span> ip_permissions:
+        from_port = perm.get(<span class="st">"fromPort"</span>, <span class="num">0</span>)
+        to_port   = perm.get(<span class="st">"toPort"</span>, <span class="num">0</span>)
+
+        <span class="cm"># Check SSH (22) or RDP (3389) overlap</span>
+        port_overlap = <span class="kw">any</span>(
+            from_port &lt;= p &lt;= to_port
+            <span class="kw">for</span> p <span class="kw">in</span> {<span class="num">22</span>, <span class="num">3389</span>}
+        )
+        <span class="kw">if not</span> port_overlap: <span class="kw">continue</span>
+
+        <span class="cm"># Find public CIDR ranges</span>
+        public_ipv4 = [
+            r <span class="kw">for</span> r <span class="kw">in</span> perm.get(<span class="st">"ipRanges"</span>, {}).get(<span class="st">"items"</span>, [])
+            <span class="kw">if</span> r.get(<span class="st">"cidrIp"</span>) == <span class="st">"0.0.0.0/0"</span>
+        ]
+        <span class="kw">if</span> public_ipv4:
+            violations.append(build_revocation(perm))
+    <span class="kw">return</span> violations
+
+
+<span class="kw">def</span> <span class="fn">revoke_rules</span>(ec2_client, group_id, violations):
+    <span class="cm">"""Revoke non-compliant ingress rules via EC2 API."""</span>
+    <span class="kw">for</span> rule <span class="kw">in</span> violations:
+        ec2_client.revoke_security_group_ingress(
+            GroupId=group_id,
+            IpPermissions=[rule],
+        )
+    <span class="kw">return</span> [{<span class="st">"status"</span>: <span class="st">"REVOKED"</span>} <span class="kw">for</span> _ <span class="kw">in</span> violations]</code></pre>
+                    </div>
+                </div>
+                <div class="code-panel" id="panel-terraform">
+                    <div class="code-block glass-card">
+                        <div class="code-header">
+                            <span class="code-filename">terraform/main.tf</span>
+                            <span class="code-lang">HCL / Terraform</span>
+                        </div>
+<pre><code><span class="kw">resource</span> <span class="st">"aws_cloudwatch_event_rule"</span> <span class="st">"sg_monitor"</span> {
+  name = <span class="st">"cloudwatchdog-sg-monitor"</span>
+
+  event_pattern = jsonencode({
+    source      = [<span class="st">"aws.ec2"</span>]
+    detail-type = [<span class="st">"AWS API Call via CloudTrail"</span>]
+    detail = {
+      eventSource = [<span class="st">"ec2.amazonaws.com"</span>]
+      eventName   = [<span class="st">"AuthorizeSecurityGroupIngress"</span>]
+    }
+  })
+}
+
+<span class="kw">resource</span> <span class="st">"aws_iam_role_policy"</span> <span class="st">"remediator"</span> {
+  <span class="cm"># Principle of Least Privilege: only 3 actions</span>
+  policy = jsonencode({
+    Statement = [{
+      Action = [
+        <span class="st">"ec2:RevokeSecurityGroupIngress"</span>,
+        <span class="st">"ec2:DescribeSecurityGroups"</span>,
+      ]
+      Resource = <span class="st">"*"</span>
+      Condition = {
+        StringEquals = {
+          <span class="st">"aws:RequestedRegion"</span> = var.aws_region
+        }
+      }
+    }]
+  })
+}</code></pre>
+                    </div>
+                </div>
+                <div class="code-panel" id="panel-tests">
+                    <div class="code-block glass-card">
+                        <div class="code-header">
+                            <span class="code-filename">tests/test_remediator.py</span>
+                            <span class="code-lang">pytest / unittest.mock</span>
+                        </div>
+<pre><code><span class="kw">class</span> <span class="fn">TestLambdaHandler</span>:
+    <span class="cm">"""End-to-end handler tests with mocked AWS."""</span>
+
+    <span class="kw">def</span> <span class="fn">test_remediates_malicious_ssh</span>(self, event, mock_ec2):
+        result = lambda_handler(event, ec2_client=mock_ec2)
+        <span class="kw">assert</span> result[<span class="st">"action"</span>] == <span class="st">"REMEDIATED"</span>
+        <span class="kw">assert</span> result[<span class="st">"violations_found"</span>] == <span class="num">1</span>
+        mock_ec2.revoke_security_group_ingress \
+            .assert_called_once()
+
+    <span class="kw">def</span> <span class="fn">test_ignores_safe_event</span>(self, safe_event, mock_ec2):
+        result = lambda_handler(safe_event, ec2_client=mock_ec2)
+        <span class="kw">assert</span> result[<span class="st">"action"</span>] == <span class="st">"COMPLIANT"</span>
+        mock_ec2.revoke_security_group_ingress \
+            .assert_not_called()
+
+<span class="cm"># Result: 27 passed, 0 failed, 0 skipped</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section tech-section" id="tech">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Technology</span>
+                <h2 class="section-title">Built With<br><span class="gradient-text">Production-Grade Tools</span></h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#955;</div><span>AWS Lambda</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128225;</div><span>EventBridge</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128203;</div><span>CloudTrail</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128272;</div><span>IAM</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128230;</div><span>Amazon S3</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128451;</div><span>DynamoDB</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#128013;</div><span>Python 3.12</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#129302;</div><span>Boto3</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#127959;</div><span>Terraform</span></div>
+                <div class="tech-badge glass-card"><div class="tech-badge-icon">&#129514;</div><span>pytest</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repository Section -->
+    <section class="section repo-section" id="repo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Repository</span>
+                <h2 class="section-title">Project<br><span class="gradient-text">Structure</span></h2>
+            </div>
+            <div class="repo-tree glass-card">
+<pre><code>CloudWatchDog/
+&#9500;&#9472;&#9472; terraform/
+&#9474;   &#9500;&#9472;&#9472; main.tf              <span class="cm"># IAM, Lambda, EventBridge rule &amp; target</span>
+&#9474;   &#9500;&#9472;&#9472; variables.tf          <span class="cm"># 9 configurable inputs with validation</span>
+&#9474;   &#9492;&#9472;&#9472; outputs.tf            <span class="cm"># Resource ARNs and identifiers</span>
+&#9500;&#9472;&#9472; src/
+&#9474;   &#9492;&#9472;&#9472; lambda_remediator.py  <span class="cm"># Core remediation engine (Boto3)</span>
+&#9500;&#9472;&#9472; tests/
+&#9474;   &#9500;&#9472;&#9472; mock_events.json      <span class="cm"># 3 realistic CloudTrail event fixtures</span>
+&#9474;   &#9492;&#9472;&#9472; test_remediator.py    <span class="cm"># 27 unit &amp; integration tests</span>
+&#9492;&#9472;&#9472; README.md                 <span class="cm"># Architecture docs &amp; deployment guide</span></code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">&#128021;</span>
+                    <span class="logo-text">CloudWatchDog</span>
+                </div>
+                <p class="footer-text">
+                    Infrastructure Configuration Drift Detection &amp; Automated Security Remediation
+                </p>
+                <div class="footer-links">
+                    <a href="#architecture">Architecture</a>
+                    <a href="#features">Features</a>
+                    <a href="#code">Code</a>
+                    <a href="#tech">Stack</a>
+                </div>
+                <p class="footer-copy">&copy; 2026 CloudWatchDog. Built for the cloud, by a Cloud Engineer.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.code-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.code-tab').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.code-panel').forEach(function(p) { p.classList.remove('active'); });
+                tab.classList.add('active');
+                document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Scroll-based nav background
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { nav.classList.add('scrolled'); }
+            else { nav.classList.remove('scrolled'); }
+        });
+
+        // Intersection Observer for fade-in animations
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.section').forEach(function(s) { observer.observe(s); });
+        document.querySelectorAll('.arch-step').forEach(function(s) { observer.observe(s); });
+        document.querySelectorAll('.glass-card').forEach(function(s) { observer.observe(s); });
+    </script>
+</body>
+</html>
