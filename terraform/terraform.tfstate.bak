@@ -1,0 +1,671 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.1",
+  "serial": 14,
+  "lineage": "ecffc470-b6a3-b9fc-f219-46975c2b3d25",
+  "outputs": {
+    "cloudwatch_log_group": {
+      "value": "/aws/lambda/cloudwatchdog-remediator-prod",
+      "type": "string"
+    },
+    "docs_site_url": {
+      "value": "https://awsjourney.space",
+      "type": "string"
+    },
+    "eventbridge_rule_arn": {
+      "value": "arn:aws:events:us-east-1:735291150988:rule/cloudwatchdog-sg-ingress-monitor-prod",
+      "type": "string"
+    },
+    "lambda_function_arn": {
+      "value": "arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod",
+      "type": "string"
+    },
+    "lambda_function_name": {
+      "value": "cloudwatchdog-remediator-prod",
+      "type": "string"
+    },
+    "lambda_role_arn": {
+      "value": "arn:aws:iam::735291150988:role/cloudwatchdog-lambda-exec-prod",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "archive_file",
+      "name": "lambda_zip",
+      "provider": "provider[\"registry.terraform.io/hashicorp/archive\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "exclude_symlink_directories": null,
+            "excludes": null,
+            "id": "82ef7efd628e22d478fcf3efcc7bca42dbe93310",
+            "output_base64sha256": "ExQ4Eq5q8Qi/eSDxQvUmm4w/sKsmfOJUTXNxAoO7wbs=",
+            "output_base64sha512": "bVG+eJTialdykCM+nVIT/g/i1r3CjNrxz6jcTTzqb094mxa/9pW1z24txIZo55ImyIHfPifwhuXe1GogtcOvsw==",
+            "output_file_mode": null,
+            "output_md5": "74648ebac33eb4d02633b1bd675d2ef8",
+            "output_path": "./.build/lambda_remediator.zip",
+            "output_sha": "82ef7efd628e22d478fcf3efcc7bca42dbe93310",
+            "output_sha256": "13143812ae6af108bf7920f142f5269b8c3fb0ab267ce2544d73710283bbc1bb",
+            "output_sha512": "6d51be7894e26a577290233e9d5213fe0fe2d6bdc28cdaf1cfa8dc4d3cea6f4f789b16bff695b5cf6e2dc48668e79226c881df3e27f086e5ded46a20b5c3afb3",
+            "output_size": 4127,
+            "source": [],
+            "source_content": null,
+            "source_content_filename": null,
+            "source_dir": "./../src",
+            "source_file": null,
+            "type": "zip"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "735291150988",
+            "arn": "arn:aws:iam::735291150988:user/paras",
+            "id": "735291150988",
+            "user_id": "AIDA2WMWESKGITOPW6S2P"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_region",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "US East (N. Virginia)",
+            "endpoint": "ec2.us-east-1.amazonaws.com",
+            "id": "us-east-1",
+            "name": "us-east-1"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_route53_zone",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:route53:::hostedzone/Z08756462VZTTWZ0DIJPR",
+            "caller_reference": "77895c6f-6e34-4908-ad77-f1f1a3002878",
+            "comment": "",
+            "id": "Z08756462VZTTWZ0DIJPR",
+            "linked_service_description": null,
+            "linked_service_principal": null,
+            "name": "awsjourney.space",
+            "name_servers": [
+              "ns-939.awsdns-53.net",
+              "ns-1159.awsdns-16.org",
+              "ns-492.awsdns-61.com",
+              "ns-2037.awsdns-62.co.uk"
+            ],
+            "primary_name_server": "ns-939.awsdns-53.net",
+            "private_zone": false,
+            "resource_record_set_count": 8,
+            "tags": {},
+            "vpc_id": null,
+            "zone_id": "Z08756462VZTTWZ0DIJPR"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_acm_certificate",
+      "name": "docs_cert",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].us_east_1",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:acm:us-east-1:735291150988:certificate/a437133c-0420-48ce-9489-b59b70fd0fa3",
+            "certificate_authority_arn": "",
+            "certificate_body": null,
+            "certificate_chain": null,
+            "domain_name": "awsjourney.space",
+            "domain_validation_options": [
+              {
+                "domain_name": "awsjourney.space",
+                "resource_record_name": "_f8c76cf57ca58971e52aba99f56cc6c8.awsjourney.space.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_73195969828163f12bfcaa4d4bea44bd.jkddzztszm.acm-validations.aws."
+              },
+              {
+                "domain_name": "www.awsjourney.space",
+                "resource_record_name": "_664396a78089d2394742e9d3481a9cd0.www.awsjourney.space.",
+                "resource_record_type": "CNAME",
+                "resource_record_value": "_5bd663481ec730e213917f678a3000dc.jkddzztszm.acm-validations.aws."
+              }
+            ],
+            "early_renewal_duration": "",
+            "id": "arn:aws:acm:us-east-1:735291150988:certificate/a437133c-0420-48ce-9489-b59b70fd0fa3",
+            "key_algorithm": "RSA_2048",
+            "not_after": "",
+            "not_before": "",
+            "options": [
+              {
+                "certificate_transparency_logging_preference": "ENABLED"
+              }
+            ],
+            "pending_renewal": false,
+            "private_key": null,
+            "renewal_eligibility": "INELIGIBLE",
+            "renewal_summary": [],
+            "status": "PENDING_VALIDATION",
+            "subject_alternative_names": [
+              "awsjourney.space",
+              "www.awsjourney.space"
+            ],
+            "tags": null,
+            "tags_all": {
+              "Environment": "prod",
+              "ManagedBy": "Terraform",
+              "Project": "cloudwatchdog",
+              "Purpose": "DocumentationSite"
+            },
+            "type": "AMAZON_ISSUED",
+            "validation_emails": [],
+            "validation_method": "DNS",
+            "validation_option": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_acm_certificate_validation",
+      "name": "docs_cert",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"].us_east_1",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "certificate_arn": "arn:aws:acm:us-east-1:735291150988:certificate/a437133c-0420-48ce-9489-b59b70fd0fa3",
+            "id": "2026-07-20 18:11:38.243 +0000 UTC",
+            "timeouts": null,
+            "validation_record_fqdns": [
+              "_664396a78089d2394742e9d3481a9cd0.www.awsjourney.space",
+              "_f8c76cf57ca58971e52aba99f56cc6c8.awsjourney.space"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo0NTAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "aws_acm_certificate.docs_cert",
+            "aws_route53_record.cert_validation",
+            "data.aws_route53_zone.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_cloudwatch_event_rule",
+      "name": "sg_ingress_monitor",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:events:us-east-1:735291150988:rule/cloudwatchdog-sg-ingress-monitor-prod",
+            "description": "Captures AuthorizeSecurityGroupIngress API calls via CloudTrail",
+            "event_bus_name": "default",
+            "event_pattern": "{\"detail\":{\"eventName\":[\"AuthorizeSecurityGroupIngress\"],\"eventSource\":[\"ec2.amazonaws.com\"]},\"detail-type\":[\"AWS API Call via CloudTrail\"],\"source\":[\"aws.ec2\"]}",
+            "force_destroy": false,
+            "id": "cloudwatchdog-sg-ingress-monitor-prod",
+            "is_enabled": true,
+            "name": "cloudwatchdog-sg-ingress-monitor-prod",
+            "name_prefix": "",
+            "role_arn": "",
+            "schedule_expression": "",
+            "state": "ENABLED",
+            "tags": null,
+            "tags_all": {
+              "Environment": "prod",
+              "ManagedBy": "Terraform",
+              "Project": "cloudwatchdog",
+              "Purpose": "SecurityRemediation"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_cloudwatch_event_target",
+      "name": "invoke_remediator",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "appsync_target": [],
+            "arn": "arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod",
+            "batch_target": [],
+            "dead_letter_config": [],
+            "ecs_target": [],
+            "event_bus_name": "default",
+            "force_destroy": false,
+            "http_target": [],
+            "id": "cloudwatchdog-sg-ingress-monitor-prod-cloudwatchdog-lambda-target",
+            "input": "",
+            "input_path": "",
+            "input_transformer": [],
+            "kinesis_target": [],
+            "redshift_target": [],
+            "retry_policy": [],
+            "role_arn": "",
+            "rule": "cloudwatchdog-sg-ingress-monitor-prod",
+            "run_command_targets": [],
+            "sagemaker_pipeline_target": [],
+            "sqs_target": [],
+            "target_id": "cloudwatchdog-lambda-target"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_cloudwatch_event_rule.sg_ingress_monitor",
+            "aws_cloudwatch_log_group.remediator",
+            "aws_iam_role.lambda_exec",
+            "aws_iam_role_policy.remediator_permissions",
+            "aws_lambda_function.remediator",
+            "data.archive_file.lambda_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_cloudwatch_log_group",
+      "name": "remediator",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:logs:us-east-1:735291150988:log-group:/aws/lambda/cloudwatchdog-remediator-prod",
+            "id": "/aws/lambda/cloudwatchdog-remediator-prod",
+            "kms_key_id": "",
+            "log_group_class": "STANDARD",
+            "name": "/aws/lambda/cloudwatchdog-remediator-prod",
+            "name_prefix": "",
+            "retention_in_days": 90,
+            "skip_destroy": false,
+            "tags": null,
+            "tags_all": {
+              "Environment": "prod",
+              "ManagedBy": "Terraform",
+              "Project": "cloudwatchdog",
+              "Purpose": "SecurityRemediation"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "lambda_exec",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::735291150988:role/cloudwatchdog-lambda-exec-prod",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2026-07-20T18:11:16Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "cloudwatchdog-lambda-exec-prod",
+            "inline_policy": [],
+            "managed_policy_arns": [],
+            "max_session_duration": 3600,
+            "name": "cloudwatchdog-lambda-exec-prod",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": null,
+            "tags_all": {
+              "Environment": "prod",
+              "ManagedBy": "Terraform",
+              "Project": "cloudwatchdog",
+              "Purpose": "SecurityRemediation"
+            },
+            "unique_id": "AROA2WMWESKGDWIEEYPF4"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy",
+      "name": "remediator_permissions",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloudwatchdog-lambda-exec-prod:cloudwatchdog-remediator-policy",
+            "name": "cloudwatchdog-remediator-policy",
+            "name_prefix": "",
+            "policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"ec2:RevokeSecurityGroupIngress\",\"ec2:DescribeSecurityGroups\"],\"Condition\":{\"StringEquals\":{\"aws:RequestedRegion\":\"us-east-1\"}},\"Effect\":\"Allow\",\"Resource\":\"*\",\"Sid\":\"SecurityGroupRemediation\"},{\"Action\":[\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:logs:us-east-1:735291150988:log-group:/aws/lambda/cloudwatchdog-remediator-prod:*\",\"Sid\":\"CloudWatchLogs\"}]}",
+            "role": "cloudwatchdog-lambda-exec-prod"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_cloudwatch_log_group.remediator",
+            "aws_iam_role.lambda_exec"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_lambda_function",
+      "name": "remediator",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "architectures": [
+              "x86_64"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod",
+            "code_sha256": "ExQ4Eq5q8Qi/eSDxQvUmm4w/sKsmfOJUTXNxAoO7wbs=",
+            "code_signing_config_arn": "",
+            "dead_letter_config": [],
+            "description": "CloudWatchDog: Auto-revokes public SSH/RDP security-group rules",
+            "environment": [
+              {
+                "variables": {
+                  "ENABLE_SLACK_NOTIFICATIONS": "false",
+                  "SLACK_WEBHOOK_URL": ""
+                }
+              }
+            ],
+            "ephemeral_storage": [
+              {
+                "size": 512
+              }
+            ],
+            "file_system_config": [],
+            "filename": "./.build/lambda_remediator.zip",
+            "function_name": "cloudwatchdog-remediator-prod",
+            "handler": "lambda_remediator.lambda_handler",
+            "id": "cloudwatchdog-remediator-prod",
+            "image_config": [],
+            "image_uri": "",
+            "invoke_arn": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod/invocations",
+            "kms_key_arn": "",
+            "last_modified": "2026-07-20T18:11:24.978+0000",
+            "layers": null,
+            "logging_config": [
+              {
+                "application_log_level": "",
+                "log_format": "Text",
+                "log_group": "/aws/lambda/cloudwatchdog-remediator-prod",
+                "system_log_level": ""
+              }
+            ],
+            "memory_size": 128,
+            "package_type": "Zip",
+            "publish": false,
+            "qualified_arn": "arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod:$LATEST",
+            "qualified_invoke_arn": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:735291150988:function:cloudwatchdog-remediator-prod:$LATEST/invocations",
+            "replace_security_groups_on_destroy": null,
+            "replacement_security_group_ids": null,
+            "reserved_concurrent_executions": -1,
+            "role": "arn:aws:iam::735291150988:role/cloudwatchdog-lambda-exec-prod",
+            "runtime": "python3.12",
+            "s3_bucket": null,
+            "s3_key": null,
+            "s3_object_version": null,
+            "signing_job_arn": "",
+            "signing_profile_version_arn": "",
+            "skip_destroy": false,
+            "snap_start": [],
+            "source_code_hash": "ExQ4Eq5q8Qi/eSDxQvUmm4w/sKsmfOJUTXNxAoO7wbs=",
+            "source_code_size": 4127,
+            "tags": null,
+            "tags_all": {
+              "Environment": "prod",
+              "ManagedBy": "Terraform",
+              "Project": "cloudwatchdog",
+              "Purpose": "SecurityRemediation"
+            },
+            "timeout": 30,
+            "timeouts": null,
+            "tracing_config": [
+              {
+                "mode": "PassThrough"
+              }
+            ],
+            "version": "$LATEST",
+            "vpc_config": []
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "environment"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "variables"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": "SLACK_WEBHOOK_URL",
+                  "type": "string"
+                }
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_cloudwatch_log_group.remediator",
+            "aws_iam_role.lambda_exec",
+            "aws_iam_role_policy.remediator_permissions",
+            "data.archive_file.lambda_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_lambda_permission",
+      "name": "allow_eventbridge",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "action": "lambda:InvokeFunction",
+            "event_source_token": null,
+            "function_name": "cloudwatchdog-remediator-prod",
+            "function_url_auth_type": null,
+            "id": "AllowEventBridgeInvocation",
+            "principal": "events.amazonaws.com",
+            "principal_org_id": null,
+            "qualifier": "",
+            "source_account": null,
+            "source_arn": "arn:aws:events:us-east-1:735291150988:rule/cloudwatchdog-sg-ingress-monitor-prod",
+            "statement_id": "AllowEventBridgeInvocation",
+            "statement_id_prefix": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_cloudwatch_event_rule.sg_ingress_monitor",
+            "aws_cloudwatch_log_group.remediator",
+            "aws_iam_role.lambda_exec",
+            "aws_iam_role_policy.remediator_permissions",
+            "aws_lambda_function.remediator",
+            "data.archive_file.lambda_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route53_record",
+      "name": "cert_validation",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "awsjourney.space",
+          "schema_version": 2,
+          "attributes": {
+            "alias": [],
+            "allow_overwrite": true,
+            "cidr_routing_policy": [],
+            "failover_routing_policy": [],
+            "fqdn": "_f8c76cf57ca58971e52aba99f56cc6c8.awsjourney.space",
+            "geolocation_routing_policy": [],
+            "geoproximity_routing_policy": [],
+            "health_check_id": "",
+            "id": "Z08756462VZTTWZ0DIJPR__f8c76cf57ca58971e52aba99f56cc6c8.awsjourney.space._CNAME",
+            "latency_routing_policy": [],
+            "multivalue_answer_routing_policy": false,
+            "name": "_f8c76cf57ca58971e52aba99f56cc6c8.awsjourney.space",
+            "records": [
+              "_73195969828163f12bfcaa4d4bea44bd.jkddzztszm.acm-validations.aws."
+            ],
+            "set_identifier": "",
+            "timeouts": null,
+            "ttl": 60,
+            "type": "CNAME",
+            "weighted_routing_policy": [],
+            "zone_id": "Z08756462VZTTWZ0DIJPR"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_acm_certificate.docs_cert",
+            "data.aws_route53_zone.main"
+          ]
+        },
+        {
+          "index_key": "www.awsjourney.space",
+          "schema_version": 2,
+          "attributes": {
+            "alias": [],
+            "allow_overwrite": true,
+            "cidr_routing_policy": [],
+            "failover_routing_policy": [],
+            "fqdn": "_664396a78089d2394742e9d3481a9cd0.www.awsjourney.space",
+            "geolocation_routing_policy": [],
+            "geoproximity_routing_policy": [],
+            "health_check_id": "",
+            "id": "Z08756462VZTTWZ0DIJPR__664396a78089d2394742e9d3481a9cd0.www.awsjourney.space._CNAME",
+            "latency_routing_policy": [],
+            "multivalue_answer_routing_policy": false,
+            "name": "_664396a78089d2394742e9d3481a9cd0.www.awsjourney.space",
+            "records": [
+              "_5bd663481ec730e213917f678a3000dc.jkddzztszm.acm-validations.aws."
+            ],
+            "set_identifier": "",
+            "timeouts": null,
+            "ttl": 60,
+            "type": "CNAME",
+            "weighted_routing_policy": [],
+            "zone_id": "Z08756462VZTTWZ0DIJPR"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_acm_certificate.docs_cert",
+            "data.aws_route53_zone.main"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "var",
+      "config_addr": "var.log_retention_days",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.log_retention_days",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "var.environment",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "var.environment",
+          "status": "pass"
+        }
+      ]
+    }
+  ]
+}
