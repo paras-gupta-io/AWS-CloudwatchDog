@@ -57,6 +57,7 @@ Frontend: HTML5 / Modern CSS
 
 📁 Repository Structure
 
+
 Plaintext
 CloudWatchDog/
 ├── docs/                      # Static documentation assets & web UI (awsjourney.space)
@@ -71,9 +72,13 @@ CloudWatchDog/
 └── README.md
 
 
+
 🚀 Getting Started
 
+
 Prerequisites
+
+
 AWS CLI configured with proper credentials.
 
 Terraform (v1.x or later).
@@ -81,16 +86,21 @@ Terraform (v1.x or later).
 PowerShell / Bash terminal.
 
 1. Provision Infrastructure
+   
 Bash
 cd terraform
 terraform init
 terraform plan
 terraform apply
-2. Deploy Web UI (awsjourney.space)
+
+2. Deploy Web UI
+   
+  (awsjourney.space)
 Upload the static assets to your S3 bucket and invalidate the CloudFront cache:
 
 
 PowerShell
+
 
 # Sync docs to S3
 aws s3 sync ./docs s3://awsjourney-space-docs-paras --delete
@@ -98,6 +108,9 @@ aws s3 sync ./docs s3://awsjourney-space-docs-paras --delete
 # Invalidate CloudFront distribution
 
 aws cloudfront create-invalidation --distribution-id E8QFTUY4G2R9B --paths "/*"
+
+
 🌐 Live Site
+
 Domain: [https://awsjourney.space](https://awsjourney.space)
                                                                            
